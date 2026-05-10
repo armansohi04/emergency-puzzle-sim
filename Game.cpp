@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <limits>
 
 // Constructor sets the number of patients and their initial state
 Game::Game() {
@@ -6,6 +7,25 @@ Game::Game() {
     patients.push_back(Patient{"Patient A", false});
     patients.push_back(Patient{"Patient B", false});
     patients.push_back(Patient{"Patient C", false});
+}
+
+int Game::getChoice(const vector<int>& validChoices) {
+    int choice;
+
+    while (true) {
+        if (cin >> choice) {
+            for (int option : validChoices) {
+                if (choice == option) {
+                    return choice;
+                }
+            }
+        } else {
+            cin.clear();
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid choice. Try again: ";
+    }
 }
 
 // Introduces the game and begins each puzzle in order
@@ -27,7 +47,7 @@ void Game::labPuzzle() {
     cout << "Your choice (1-3): ";
 
     int choice;
-    cin >> choice;
+    choice = getChoice({1, 2, 3});
 
     if (choice == 2) {
         patients[0].saved = true;
@@ -46,7 +66,7 @@ void Game::erPuzzle() {
     cout << "Your choice (1-3): ";
 
     int choice;
-    cin >> choice;
+    choice = getChoice({1, 2, 3});
 
     if (choice == 3) {
         patients[1].saved = true;
@@ -65,7 +85,7 @@ void Game::morguePuzzle() {
     cout << "Which tag holds the key? (107/202/313): ";
 
     int tag;
-    cin >> tag;
+    tag = getChoice({107, 202, 313});
 
     if (tag == 202) {
         patients[2].saved = true;
