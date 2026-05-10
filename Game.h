@@ -18,6 +18,8 @@ private:
     int patientsSaved;
     std::vector<Patient> patients;
 
+    int getChoice(const std::vector<int>& validChoices);
+
 public:
     Game();              // Set up initial game state
     void start();        // Begin the game
