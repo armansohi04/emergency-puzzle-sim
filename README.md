@@ -32,7 +32,3 @@ Each room presents a different question. The game checks the player’s answer, 
 g++ main.cpp Game.cpp -o hospital_game
 ./hospital_game
 ```
-
-## Notes
-
-This project was built to practice C++ structure, user input handling, and basic game flow in a terminal program.
